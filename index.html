@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sci-Flipper 教師專業發展學習平台</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo.png">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <main class="app-container">
+    <!-- Header: Logo, 標題與副標題 -->
+    <header class="header-section">
+      <div class="logo-wrapper" title="點擊回到儀表板 / 首頁" onclick="location.reload()">
+        <img src="logo.png" alt="Sci-Flipper Logo" class="logo-img">
+      </div>
+      <h1 class="platform-title">Sci-Flipper 教師專業發展學習平台</h1>
+      <p class="subtitle-1">GULLA 專業學習回饋系統</p>
+      <p class="subtitle-2">Generative Universal Language-model Learning Agent</p>
+    </header>
+
+    <div class="header-divider"></div>
+
+    <!-- 登入表單卡片 -->
+    <section class="login-card" aria-label="登入區域">
+      <h2 class="card-title" id="cardTitle">使用者登入</h2>
+
+      <form id="loginForm" autocomplete="on">
+        <!-- 縣市選單 -->
+        <div class="form-group">
+          <label for="citySelect" class="form-label">縣市</label>
+          <select id="citySelect" name="city" class="form-control" required>
+            <option value="" selected>請選擇</option>
+            <option value="Sci-Flipper 跨領域專業學習社群">Sci-Flipper 跨領域專業學習社群</option>
+            <option value="教育部">教育部</option>
+            <option value="大專院校">大專院校</option>
+            <option value="臺北市">臺北市</option>
+            <option value="桃園市">桃園市</option>
+            <option value="臺中市">臺中市</option>
+            <option value="雲林縣">雲林縣</option>
+            <option value="高雄市">高雄市</option>
+            <option value="苗栗縣">苗栗縣</option>
+            <option value="新竹縣">新竹縣</option>
+            <option value="臺南市">臺南市</option>
+            <option value="屏東縣">屏東縣</option>
+            <option value="新北市">新北市</option>
+          </select>
+        </div>
+
+        <!-- 單位選單 (依縣市連動) -->
+        <div class="form-group">
+          <label for="orgSelect" class="form-label">單位</label>
+          <select id="orgSelect" name="organization" class="form-control" disabled required>
+            <option value="" selected>請先選擇縣市</option>
+          </select>
+        </div>
+
+        <!-- 姓名輸入 -->
+        <div class="form-group">
+          <label for="nameInput" class="form-label">姓名</label>
+          <input 
+            type="text" 
+            id="nameInput" 
+            name="name" 
+            class="form-control" 
+            placeholder="請輸入姓名" 
+            required 
+            autocomplete="name"
+          >
+        </div>
+
+        <!-- 登入按鈕 (已解除密碼限制，免密碼直接登入) -->
+        <button type="submit" id="submitBtn" class="submit-btn">登入</button>
+
+        <!-- 身分切換連結 -->
+        <div class="switch-portal-wrapper">
+          <a href="#" id="switchPortalLink" class="switch-portal-link">切換至 教師/管理員入口</a>
+        </div>
+      </form>
+    </section>
+
+    <!-- 頁尾宣告 -->
+    <footer class="footer-section">
+      <p>Generative Universal Language-model Learning Agent (鍾昌宏 , 2025) © All Rights Reserved.</p>
+    </footer>
+  </main>
+
+  <!-- Google Sites 風格資訊圖示 -->
+  <div class="sites-info-icon" title="關於此頁面">i</div>
+
+  <!-- Toast 提示訊息 -->
+  <div id="toastNotice" class="toast-notice" role="alert" aria-live="polite"></div>
+
+  <!-- 邏輯腳本 -->
+  <script src="app.js"></script>
+</body>
+</html>
