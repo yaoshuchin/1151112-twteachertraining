@@ -24,62 +24,97 @@
 
     <div class="header-divider"></div>
 
-    <!-- 登入表單卡片 -->
-    <section class="login-card" aria-label="登入區域">
-      <h2 class="card-title" id="cardTitle">使用者登入</h2>
+    <!-- 入口卡片 (已移除縣市、單位、姓名與密碼欄位，改為一鍵快速直接進入) -->
+    <section class="entry-card" id="entryCard" aria-label="進入平台">
+      <h2 class="card-title" id="cardTitle">歡迎使用學習平台</h2>
+      
+      <p class="card-desc">
+        本研習系統已開啟免身分驗證快速通道。<br>
+        無須輸入縣市、單位、姓名或密碼，點擊即可直接進入平台開始研習與互動。
+      </p>
 
-      <form id="loginForm" autocomplete="on">
-        <!-- 縣市選單 -->
-        <div class="form-group">
-          <label for="citySelect" class="form-label">縣市</label>
-          <select id="citySelect" name="city" class="form-control" required>
-            <option value="" selected>請選擇</option>
-            <option value="Sci-Flipper 跨領域專業學習社群">Sci-Flipper 跨領域專業學習社群</option>
-            <option value="教育部">教育部</option>
-            <option value="大專院校">大專院校</option>
-            <option value="臺北市">臺北市</option>
-            <option value="桃園市">桃園市</option>
-            <option value="臺中市">臺中市</option>
-            <option value="雲林縣">雲林縣</option>
-            <option value="高雄市">高雄市</option>
-            <option value="苗栗縣">苗栗縣</option>
-            <option value="新竹縣">新竹縣</option>
-            <option value="臺南市">臺南市</option>
-            <option value="屏東縣">屏東縣</option>
-            <option value="新北市">新北市</option>
-          </select>
+      <!-- 快速身分選擇標籤 -->
+      <div class="role-pills-group" role="tablist">
+        <button type="button" class="role-pill-btn active" id="roleUserBtn" data-role="學員">
+          🎓 學員視角
+        </button>
+        <button type="button" class="role-pill-btn" id="roleAdminBtn" data-role="教師/管理員">
+          👨‍🏫 教師 / 管理員視角
+        </button>
+      </div>
+
+      <!-- 直接進入按鈕 -->
+      <button type="button" id="enterBtn" class="enter-btn">
+        <span>🚀 立即進入平台</span>
+      </button>
+
+      <div>
+        <span class="fast-access-tag">⚡ 免登入 · 即開即用 · 跨載具支援</span>
+      </div>
+    </section>
+
+    <!-- 平台主工作區 / 儀表板 (點擊進入後流暢展示) -->
+    <section class="platform-dashboard" id="platformDashboard" style="display: none;">
+      <!-- 儀表板頂部狀態列 -->
+      <div class="dashboard-header">
+        <div>
+          <h3 id="welcomeHeading">歡迎進入 Sci-Flipper 專業研習工作區</h3>
+          <p>GULLA 專業學習回饋系統核心代理人在線中 · 鍾昌宏 (2025)</p>
+        </div>
+        <div>
+          <span class="badge-role" id="currentRoleBadge">當前身分：學員視角</span>
+        </div>
+      </div>
+
+      <!-- 四大核心研習模組 -->
+      <div class="modules-grid">
+        <div class="module-card">
+          <div class="module-icon">💡</div>
+          <h4 class="module-title">單元一：生成式 AI 課堂應用</h4>
+          <p class="module-desc">探索如何利用 Generative AI 與提示詞架構，引導學生自主探究與批判思考，促進課堂深度對話。</p>
+          <button class="module-action-btn" onclick="openModule('生成式 AI 課堂應用')">開始學習 ➔</button>
         </div>
 
-        <!-- 單位選單 (依縣市連動) -->
-        <div class="form-group">
-          <label for="orgSelect" class="form-label">單位</label>
-          <select id="orgSelect" name="organization" class="form-control" disabled required>
-            <option value="" selected>請先選擇縣市</option>
-          </select>
+        <div class="module-card">
+          <div class="module-icon">🤝</div>
+          <h4 class="module-title">單元二：Sci-Flipper 跨領域社群共備</h4>
+          <p class="module-desc">跨學科教學設計、翻轉課堂實務經驗分享，以及素養導向評量工具的協同編修與教案庫。</p>
+          <button class="module-action-btn" onclick="openModule('跨領域社群共備')">瀏覽教案 ➔</button>
         </div>
 
-        <!-- 姓名輸入 -->
-        <div class="form-group">
-          <label for="nameInput" class="form-label">姓名</label>
-          <input 
-            type="text" 
-            id="nameInput" 
-            name="name" 
-            class="form-control" 
-            placeholder="請輸入姓名" 
-            required 
-            autocomplete="name"
-          >
+        <div class="module-card">
+          <div class="module-icon">📊</div>
+          <h4 class="module-title">單元三：GULLA 即時學習回饋系統</h4>
+          <p class="module-desc">利用語言模型代理人對學員課堂反思進行多維度語意分析，自動產生鷹架式提問與差異化指引。</p>
+          <button class="module-action-btn" onclick="openModule('GULLA 即時回饋')">啟動分析 ➔</button>
         </div>
 
-        <!-- 登入按鈕 (已解除密碼限制，免密碼直接登入) -->
-        <button type="submit" id="submitBtn" class="submit-btn">登入</button>
-
-        <!-- 身分切換連結 -->
-        <div class="switch-portal-wrapper">
-          <a href="#" id="switchPortalLink" class="switch-portal-link">切換至 教師/管理員入口</a>
+        <div class="module-card">
+          <div class="module-icon">📝</div>
+          <h4 class="module-title">單元四：課堂觀察量表與專業省思</h4>
+          <p class="module-desc">公開授課觀課規準、課堂紀錄分析與教師專業成長歷程檔，支援視覺化成效報表匯出。</p>
+          <button class="module-action-btn" onclick="openModule('課堂觀察量表')">查看規準 ➔</button>
         </div>
-      </form>
+      </div>
+
+      <!-- GULLA AI 智能互動回饋模擬體驗區 -->
+      <div class="ai-interactive-panel">
+        <h4 class="panel-title">
+          <span>🤖 GULLA AI 課堂教學回饋助手</span>
+        </h4>
+        <p class="panel-desc">請在此輸入您的教學構想、課堂遇到的提問難點或學生學習反思，GULLA 將為您生成專業引導建議：</p>
+        
+        <div class="ai-input-group">
+          <textarea 
+            id="aiUserInput" 
+            class="ai-textarea" 
+            placeholder="例如：如何在國中理化課堂中運用 AI 引導學生設計科學探究實驗？"
+          ></textarea>
+          <button type="button" id="aiSendBtn" class="ai-send-btn">取得回饋</button>
+        </div>
+
+        <div id="aiResponseBox" class="ai-response-box"></div>
+      </div>
     </section>
 
     <!-- 頁尾宣告 -->
